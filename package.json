@@ -8,8 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "nodemon index.js",
-    "server": "nodemon server/index.js"
+    "start": "nodemon app.js",
+    "server": "nodemon server/app.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
