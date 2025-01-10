@@ -15,7 +15,7 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/auth/login', {
+      const response = await axios.post('https://friend-assignemnt.vercel.app/api/auth/login', {
         username,
         password
       });

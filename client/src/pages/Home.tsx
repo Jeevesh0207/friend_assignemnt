@@ -71,7 +71,7 @@ function Home() {
   const fetchFriendRequests = async () => {
     try {
       setLoading((prev) => ({ ...prev, requests: true }));
-      const response = await axios.get('http://localhost:4000/api/friends/requests', {
+      const response = await axios.get('https://friend-assignemnt.vercel.app/api/friends/requests', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFriendRequests(response.data);
@@ -85,7 +85,7 @@ function Home() {
   const fetchFriends = async () => {
     try {
       setLoading((prev) => ({ ...prev, friends: true }));
-      const response = await axios.get('http://localhost:4000/api/users/friends', {
+      const response = await axios.get('https://friend-assignemnt.vercel.app/api/users/friends', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFriends(response.data);
@@ -99,7 +99,7 @@ function Home() {
   const fetchRecommendations = async () => {
     try {
       setLoading((prev) => ({ ...prev, recommendations: true }));
-      const response = await axios.get('http://localhost:4000/api/friends/recommendations', {
+      const response = await axios.get('https://friend-assignemnt.vercel.app/api/friends/recommendations', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRecommendations(response.data);
@@ -115,7 +115,7 @@ function Home() {
 
     try {
       setLoading((prev) => ({ ...prev, search: true }));
-      const response = await axios.get(`http://localhost:4000/api/users/search?q=${searchQuery}`, {
+      const response = await axios.get(`https://friend-assignemnt.vercel.app/api/users/search?q=${searchQuery}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data);
@@ -129,7 +129,7 @@ function Home() {
   const sendFriendRequest = async (userId: string) => {
     try {
       await axios.post(
-        `http://localhost:4000/api/friends/request/${userId}`,
+        `https://friend-assignemnt.vercel.app/api/friends/request/${userId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -146,7 +146,7 @@ function Home() {
   const handleFriendRequest = async (userId: string, status: 'accepted' | 'rejected') => {
     try {
       await axios.put(
-        `http://localhost:4000/api/friends/request/${userId}`,
+        `https://friend-assignemnt.vercel.app/api/friends/request/${userId}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -165,7 +165,7 @@ function Home() {
 
   const removeFriend = async (userId: string) => {
     try {
-      await axios.delete(`http://localhost:4000/api/friends/${userId}`, {
+      await axios.delete(`https://friend-assignemnt.vercel.app/api/friends/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchFriends();
