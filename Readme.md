@@ -6,11 +6,6 @@
 
 ---
 
-## 🪪 **Logo**  
-![Friend Request Logo](https://i.imgur.com/your-logo-url.png)  
-
----
-
 ## 📖 **Description**  
 
 Friend Request is a modern social network application where users can connect, send friend requests, and manage friendships seamlessly. Built with **React**, **Node.js**, and **MongoDB**, it offers a responsive and dynamic user experience.  
@@ -73,14 +68,15 @@ vercel.json
 
 ## 🖼️ **Screenshots**  
 
+
 ### 🔐 **Login Page**  
-![Login Page](https://i.imgur.com/your-login-page-url.png)  
+![Login Page](./client/src/img/login.png)  
 
 ### ✍️ **Register Page**  
-![Register Page](https://i.imgur.com/your-register-page-url.png)  
+![Register Page](./client/src/img/register.png)  
 
 ### 🏠 **Home Page**  
-![Home Page](https://i.imgur.com/your-home-page-url.png)  
+![Home Page](./client/src/img/home.png)  
 
 ---
 
