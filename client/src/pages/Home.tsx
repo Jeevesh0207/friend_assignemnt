@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Search, UserPlus, UserMinus, Users, Bell, LogOut } from 'lucide-react';
+import { Search, UserPlus, UserMinus, Users, Bell, LogOut,Loader } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -184,7 +184,7 @@ function Home() {
           <motion.h1 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="text-2xl font-bold bg-gradient-to-r text-mint bg-clip-text text-transparent"
+            className="md:text-[18px]  lg:text-[22px]  font-bold bg-gradient-to-r text-mint bg-clip-text text-transparent"
           >
             Social Network - {username}
           </motion.h1>
@@ -222,8 +222,9 @@ function Home() {
               disabled={loading.search}
               className="glass-button px-6 py-3 flex items-center gap-2"
             >
-              <Search size={20} />
-              {loading.search ? 'Searching...' : 'Search'}
+              {
+                loading.search?<Loader size={20}/> : <Search size={20}/>
+              }
             </motion.button>
           </div>
 

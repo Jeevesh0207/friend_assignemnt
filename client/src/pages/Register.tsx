@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserPlus } from 'lucide-react';
+import { UserPlus,Loader } from 'lucide-react';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
@@ -9,11 +9,13 @@ import toast from 'react-hot-toast';
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.post('https://friend-assignemnt.vercel.app/api/auth/register', {
         username,
@@ -21,6 +23,7 @@ function Register() {
       });
       login(response.data.token, response.data.userId);
       toast.success('Registration successful!');
+      setLoading(false)
       navigate('/');
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Registration failed');
@@ -95,7 +98,9 @@ function Register() {
               type="submit"
               className="glass-button w-full py-3 px-4"
             >
-              Register
+              {
+                loading?<Loader size={20}/>:'Register'
+              }
             </motion.button>
           </motion.form>
 
@@ -108,8 +113,10 @@ function Register() {
             Already have an account?{' '}
             <motion.a
               whileHover={{ scale: 1.05 }}
-              href="/login"
-              className="text-mint font-medium"
+              onClick={()=>{
+                navigate('/login')
+              }}
+              className="text-mint font-medium cursor-pointer"
             >
               Login
             </motion.a>

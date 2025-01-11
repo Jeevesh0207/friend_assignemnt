@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogIn } from 'lucide-react';
+import { LogIn,Loader } from 'lucide-react';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
@@ -9,11 +9,13 @@ import toast from 'react-hot-toast';
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.post('https://friend-assignemnt.vercel.app/api/auth/login', {
         username,
@@ -22,6 +24,7 @@ function Login() {
       login(response.data.token, response.data.userId);
       localStorage.setItem('username', username);
       toast.success('Login successful!');
+      setLoading(false)
       navigate('/');
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Login failed');
@@ -30,7 +33,7 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -95,9 +98,11 @@ function Login() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="glass-button w-full py-3 px-4"
+              className="glass-button w-full py-3 px-4 flex justify-center"
             >
-              Login
+              {
+                loading?<Loader size={20}/>:'Login'
+              }
             </motion.button>
           </motion.form>
 
@@ -110,8 +115,10 @@ function Login() {
             Don't have an account?{' '}
             <motion.a
               whileHover={{ scale: 1.05 }}
-              href="/register"
-              className="text-mint font-medium"
+              onClick={()=>{
+                navigate('/register')
+              }}
+              className="text-mint font-medium cursor-pointer"
             >
               Register
             </motion.a>
